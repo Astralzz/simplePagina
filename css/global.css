@@ -1,0 +1,50 @@
+/* Imagen de fondo */
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://i.pinimg.com/564x/47/4f/f3/474ff3319df17354e29327d37d37fc2d.jpg");
+  background-size: cover;
+  filter: brightness(70%);
+  z-index: -1;
+}
+
+/* Color rosa */
+.color-rosa {
+    background-color: palevioletred;
+    background: palevioletred;
+}
+
+.boton-animar {
+    transition: transform 0.3s ease;
+}
+
+.boton-animar:hover {
+    transform: scale(1.05);
+}
+
+/* Color de fondo y estilos de la tabla */
+.table {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.animar {
+  animation: fadeIn 1.5s;
+}
+
+.trasparente {
+    background-color: transparent;
+    background: transparent;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
