@@ -1,20 +1,20 @@
 <?php
-// Incluir el archivo de la clase de control de datos
+// * Incluimos el padre
 require_once 'Controlador.php';
 
-// Clase para la conexión
+// todo, Clase para la conexión
 class ControladorVehiculos extends Controlador
 {
 
-    // Constructor
+    // * Constructor
     public function __construct()
     {
-        // Ejecutar el constructor padre
+        // * Ejecutar el constructor padre
         parent::__construct();
     }
 
-    // Mostrar vehículos
-    public function getVehiculos()
+    // * Mostrar vehículos
+    public function verVehiculos()
     {
         // Lista de vehículos
         $vehiculos = array();
@@ -36,7 +36,7 @@ class ControladorVehiculos extends Controlador
         return $vehiculos;
     }
 
-    // Agregar un nuevo vehículo
+    // * Agregar un nuevo vehículo
     public function agregarVehiculo($marca, $modelo, $anio, $color, $noPuertas, $placa, $observaciones)
     {
         // Escapar los valores para evitar inyección de SQL
@@ -60,7 +60,7 @@ class ControladorVehiculos extends Controlador
         }
     }
 
-    // Eliminar un vehículo por su ID
+    // * Eliminar un vehículo por su ID
     public function eliminarVehiculo($id)
     {
         // Escapar el valor del ID para evitar inyección de SQL

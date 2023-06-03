@@ -14,7 +14,7 @@ class ControladorCliente extends Controlador
     }
 
     // * Mostrar clientes
-    public function getClientes()
+    public function verClientes()
     {
 
         // Lista de clientes

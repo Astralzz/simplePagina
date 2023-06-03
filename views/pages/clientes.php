@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cliente_id'])) {
 }
 
 // Obtenemos clientes
-$clientes = $controlador->getClientes();
+$clientes = $controlador->verClientes();
 
 ?>
 
@@ -63,7 +63,7 @@ $clientes = $controlador->getClientes();
                         <th>Dirección</th>
                         <th>Empresa</th>
                         <th>RFC</th>
-                        <th></th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,33 +95,38 @@ $clientes = $controlador->getClientes();
                 <h3 class="text-center">Agregar Cliente</h3>
                 <form method="POST">
                     <div class="row">
+                        <!-- Nombre -->
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <label for="nombre">*Nombre</label>
+                            <input minlength="2" type="text" class="form-control" id="nombre" name="nombre" required>
                         </div>
                     </div>
+                    <!-- Apellidos -->
                     <div class="row">
                         <div class="form-group">
-                            <label for="apellidos">Apellidos</label>
-                            <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+                            <label for="apellidos">*Apellidos</label>
+                            <input minlength="3" type="text" class="form-control" id="apellidos" name="apellidos" required>
                         </div>
                     </div>
+                    <!-- Direccion -->
                     <div class="row">
                         <div class="form-group">
                             <label for="direccion">Dirección</label>
-                            <input type="text" class="form-control" id="direccion" name="direccion">
+                            <input minlength="5" type="text" class="form-control" id="direccion" name="direccion">
                         </div>
                     </div>
+                    <!-- Empresa -->
                     <div class="row">
                         <div class="form-group">
                             <label for="empresa">Empresa</label>
-                            <input type="text" class="form-control" id="empresa" name="empresa">
+                            <input minlength="5" type="text" class="form-control" id="empresa" name="empresa">
                         </div>
                     </div>
+                    <!-- RFC -->
                     <div class="row">
                         <div class="form-group">
                             <label for="rfc">RFC</label>
-                            <input type="text" class="form-control" id="rfc" name="rfc">
+                            <input minlength="16" maxlength="16" type="text" class="form-control" id="rfc" name="rfc">
                         </div>
                     </div>
                     <!-- Botón para agregar -->

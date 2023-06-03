@@ -1,18 +1,20 @@
 <?php
 // Obtener la ruta actual
 $ruta = $_SERVER['REQUEST_URI'];
-// echo $ruta;
 
-// Index
-if ($ruta == $RUTA_GLOBAL) {
-    echo '<h1>Inicio</h1>';
-    // Clientes
+// ? Index?
+if ($ruta == $RUTA_GLOBAL || $ruta == $RUTA_GLOBAL . "?pag=inicio") {
+    include './views/pages/inicio.php';
+    // ? Clientes?
 } elseif ($ruta == $RUTA_GLOBAL . "?pag=usuarios") {
     include './views/pages/clientes.php';
-    // Autos
+    // ? Vehiculos?
 } elseif ($ruta ==  $RUTA_GLOBAL . "?pag=autos") {
     include './views/pages/autos.php';
-    // Otras
+    // ? Servicios?
+} elseif ($ruta ==  $RUTA_GLOBAL . "?pag=servicios") {
+    include './views/pages/servicios.php';
+    // ? Otras ?
 } else {
     echo '<h1>Página no encontrada</h1>';
     echo '<p>La página solicitada no existe.</p>';

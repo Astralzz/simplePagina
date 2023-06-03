@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vehiculo_id'])) {
 }
 
 // Obtener vehículos
-$vehiculos = $controlador->getVehiculos();
+$vehiculos = $controlador->verVehiculos();
 
 ?>
 
@@ -66,10 +66,11 @@ $vehiculos = $controlador->getVehiculos();
                         <th>No. Puertas</th>
                         <th>Placa</th>
                         <th>Observaciones</th>
-                        <th></th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Recorremos -->
                     <?php foreach ($vehiculos as $vehiculo) : ?>
                         <tr>
                             <!-- Columnas -->
