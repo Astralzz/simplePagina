@@ -1,0 +1,96 @@
+# 1_ CREAR BASE DE DATOS
+	CREATE DATABASE `lavado_autos`;
+
+	USE `lavado_autos`;
+
+# 2_ CREAR TABLA DE CLIENTES
+	CREATE TABLE `clientes` (
+	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(80) NOT NULL,
+	`apellidos` VARCHAR(80) NOT NULL,
+	`direccion` VARCHAR(320) NULL DEFAULT NULL,
+	`empresa` VARCHAR(120) NULL,
+	`RFC` VARCHAR(30) NULL,
+	PRIMARY KEY (`id`)
+);
+
+# 3_ CREAR TABLA VEHICULO
+CREATE TABLE `vehiculos` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `marca` VARCHAR(80) NOT NULL,
+    `modelo` VARCHAR(80) NOT NULL,
+    `anio` YEAR NULL DEFAULT NULL,
+    `color` VARCHAR(60) NOT NULL,
+    `noPuertas` TINYINT NULL DEFAULT 0,
+    `placa` VARCHAR(30) NULL DEFAULT NULL,
+    `observaciones` TEXT NULL,
+    PRIMARY KEY (`id`)
+);
+
+
+# 4_ CREAR TABLA DE CATEGORIA SERVICIO
+CREATE TABLE `categoria_servicio` (
+	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(50) NOT NULL DEFAULT '',
+	PRIMARY KEY (`id`)
+);
+
+# 5_ CREAR TABLA DE SERVICIO
+CREATE TABLE `servicio` (
+	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`id_cliente` BIGINT NOT NULL DEFAULT '0',
+	`id_vehiculo` BIGINT NOT NULL DEFAULT '0',
+	`precio` DOUBLE NOT NULL,
+	`fecha` DATE NOT NULL,
+	`hora_salida` TIME NULL DEFAULT NULL,
+	`hora_entrada` TIME NULL DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	CONSTRAINT `FK_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT `FK_vehiculo` FOREIGN KEY (`id_vehiculo`) REFERENCES `vehiculos` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+# 7_ CREAR TABLA DE CATEGORIA DEL SERVICIO
+CREATE TABLE `detalle_servicio` (
+	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`id_servicio` BIGINT NOT NULL DEFAULT '0',
+	`id_categoria_lavado` BIGINT NOT NULL DEFAULT '0',
+	`encerado` TINYINT NOT NULL DEFAULT 0,
+	`pulido` TINYINT NOT NULL DEFAULT 0,
+	`aspirado_cajuela` TINYINT NOT NULL DEFAULT 0,
+	`faros` TINYINT NOT NULL DEFAULT 0,
+	`aire_llantas` TINYINT NOT NULL DEFAULT 0,
+	`id_categoria_almorol` BIGINT NOT NULL DEFAULT '0',
+	PRIMARY KEY (`id`),
+	CONSTRAINT `FK_servicio` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT `FK_categoria_lavado` FOREIGN KEY (`id_categoria_lavado`) REFERENCES `categoria_servicio` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT `FK_categoria_almorol` FOREIGN KEY (`id_categoria_almorol`) REFERENCES `categoria_servicio` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+# 8_ INSERTAMOS 3 CATEGORIAS
+INSERT INTO `lavado_autos`.`categoria_servicio` (`nombre`) VALUES ('ninguno');
+INSERT INTO `lavado_autos`.`categoria_servicio` (`nombre`) VALUES ('interior');
+INSERT INTO `lavado_autos`.`categoria_servicio` (`nombre`) VALUES ('exterior');
+
+# 9_ INSERTAMOS 3 CLIENTES
+INSERT INTO `lavado_autos`.`clientes` (`nombre`, `apellidos`, `direccion`, `empresa`, `RFC`) VALUES ('Jose Manuel', 'Lopez Moralez', 'Col. Centro numero 23', 'Coca Cola', '81818716171');
+INSERT INTO `lavado_autos`.`clientes` (`nombre`, `apellidos`, `direccion`) VALUES ('Karla Paola', 'Garcia Mendoza', 'Col. Obrera No. 23 Clle principal');
+INSERT INTO `lavado_autos`.`clientes` (`nombre`, `apellidos`, `empresa`, `RFC`) VALUES ('Jose Maria', 'Lopez Rojas', 'Telcel', '21841871817');
+
+# 10_ INSERTAMOS 3 VEHICULOS
+INSERT INTO `vehiculos` (`marca`, `modelo`, `anio`, `color`, `noPuertas`, `placa`, `observaciones`)
+VALUES
+    ('Toyota', 'Corolla', 2020, 'Rojo', 4, 'ABC123', 'Sin observaciones'),
+    ('Ford', 'Mustang', 2018, 'Negro', 2, 'DEF456', 'Algunas observaciones'),
+    ('Honda', 'Civic', 2019, 'Azul', 4, 'GHI789', 'Observaciones adicionales');
+
+# 11_ INSERTAMOS 3 SERVICIOS
+INSERT INTO `servicio` (`id_cliente`, `id_vehiculo`, `precio`, `fecha`, `hora_salida`, `hora_entrada`)
+VALUES
+    (1, 1, 50.00, '2023-05-30', '08:00:00', '10:00:00'),
+    (2, 2, 65.00, '2023-05-31', '09:30:00', '11:30:00'),
+    (3, 3, 80.00, '2023-06-01', '11:00:00', '13:00:00');
+
+
+
+
+

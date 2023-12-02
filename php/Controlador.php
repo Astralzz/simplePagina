@@ -8,13 +8,15 @@ class Controlador
     protected $usuario = "root";
     protected $password = "";
     protected $base_datos = "lavado_autos";
+    protected $port = 3307;
     protected $conn;
 
     // * Constructor
     public function __construct()
     {
         // Creamos conexión
-        $this->conn = new mysqli($this->servidor, $this->usuario, $this->password, $this->base_datos);
+        $this->conn = new mysqli($this->servidor, $this->usuario, $this->password, $this->base_datos, $this->port);
+        
         // Si da error
         if ($this->conn->connect_error) {
             die("Error en la conexión: " . $this->conn->connect_error);
